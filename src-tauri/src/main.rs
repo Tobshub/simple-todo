@@ -55,8 +55,6 @@ fn get_todos(conn: &mut SqliteConnection) -> Option<Vec<Todo>> {
 }
 
 fn add_todo(conn: &mut SqliteConnection, content: &str) -> Result<(), Box<dyn Error>> {
-    use crate::schema::todos;
-
     let new_todo = NewTodo { content };
 
     diesel::insert_into(todos::table)

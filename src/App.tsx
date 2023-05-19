@@ -26,6 +26,11 @@ function App() {
     }
   };
 
+  const deleteTodo = async (id: number) => {
+    await invoke("api", { action: "delete", id });
+    await getTodos();
+  };
+
   useEffect(() => {
     getTodos();
   }, []);
@@ -47,10 +52,8 @@ function App() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <span>
-              {todo.content}
-            </span>
-            <button>DELETE</button>
+            <span>{todo.content}</span>
+            <button onClick={() => deleteTodo(todo.id)}>DELETE</button>
           </li>
         ))}
       </ul>

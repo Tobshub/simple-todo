@@ -5,10 +5,10 @@ use std::error::Error;
 
 use self::models::{NewTodo, Todo};
 use diesel::prelude::*;
-use simple_todo::*;
+use simple_todo::{schema::todos, *};
 
 #[tauri::command]
-fn api(action: &str, content: Option<&str>) -> Option<Vec<Todo>> {
+fn api(action: &str, content: Option<&str>, id: Option<i32>) -> Option<Vec<Todo>> {
     let connection = &mut establish_connection();
     match action {
         "get" => {
@@ -18,15 +18,25 @@ fn api(action: &str, content: Option<&str>) -> Option<Vec<Todo>> {
         "add" => {
             if let Some(content) = content {
                 return match add_todo(connection, content) {
-                    Ok(_) => {
-                        None
-                    }
+                    Ok(_) => None,
                     Err(_) => {
                         println!("Failed to add todo");
                         None
                     }
                 };
-            } 
+            }
+            return None;
+        }
+        "delete" => {
+            if let Some(id) = id {
+                return match delete_todo(connection, id) {
+                    Ok(_) => None,
+                    Err(_) => {
+                        println!("Failed to delete todo");
+                        None
+                    }
+                };
+            }
             return None;
         }
         _ => None,
@@ -59,6 +69,14 @@ fn add_todo(conn: &mut SqliteConnection, content: &str) -> Result<(), Box<dyn Er
     diesel::insert_into(todos::table)
         .values(&new_todo)
         .execute(conn)?;
+
+    return Ok(());
+}
+
+fn delete_todo(conn: &mut SqliteConnection, todo_id: i32) -> Result<(), Box<dyn Error>> {
+    use self::schema::todos::dsl::*;
+
+    diesel::delete(todos.filter(id.eq(todo_id))).execute(conn)?;
 
     return Ok(());
 }

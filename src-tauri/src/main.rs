@@ -17,7 +17,7 @@ fn api(action: &str, content: Option<&str>) -> Option<Vec<Todo>> {
         }
         "add" => {
             if let Some(content) = content {
-                match add_todos(connection, content) {
+                match add_todo(connection, content) {
                     Ok(_) => {
                         return None;
                     }
@@ -54,7 +54,7 @@ fn get_todos(conn: &mut SqliteConnection) -> Option<Vec<Todo>> {
     return Some(found);
 }
 
-fn add_todos(conn: &mut SqliteConnection, content: &str) -> Result<(), Box<dyn Error>> {
+fn add_todo(conn: &mut SqliteConnection, content: &str) -> Result<(), Box<dyn Error>> {
     use crate::schema::todos;
 
     let new_todo = NewTodo { content };

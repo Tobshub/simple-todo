@@ -1,5 +1,5 @@
 [package]
-name = "tuu-duu-desktop"
+name = "simple-todo"
 version = "1.0.0"
 description = "A Tauri App"
 authors = ["you"]

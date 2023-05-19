@@ -5,7 +5,7 @@ use std::error::Error;
 
 use self::models::{NewTodo, Todo};
 use diesel::prelude::*;
-use tuu_duu_desktop::*;
+use simple_todo::*;
 
 #[tauri::command]
 fn api(action: &str, content: Option<&str>) -> Option<Vec<Todo>> {

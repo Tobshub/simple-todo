@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "tuu-duu-desktop",
+    "productName": "simple-todo",
     "version": "1.0.0"
   },
   "tauri": {
@@ -27,7 +27,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "tobshub.tuu-duu.desktop",
+      "identifier": "tobshub.simple_todo.desktop",
       "targets": "all"
     },
     "security": {
@@ -40,7 +40,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "tuu-duu-desktop",
+        "title": "Simple Todo",
         "width": 800,
         "height": 600
       }

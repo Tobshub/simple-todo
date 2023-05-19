@@ -2374,6 +2374,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "238abfbb77c1915110ad968465608b68e869e0772622c9656714e73e5a1a522f"
 
 [[package]]
+name = "simple-todo"
+version = "1.0.0"
+dependencies = [
+ "diesel",
+ "diesel_migrations",
+ "dotenvy",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+]
+
+[[package]]
 name = "siphasher"
 version = "0.3.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2988,19 +3001,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "52984d277bdf2a751072b5df30ec0377febdb02f7696d64c2d7d54630bac4303"
 dependencies = [
  "serde_json",
-]
-
-[[package]]
-name = "tuu-duu-desktop"
-version = "1.0.0"
-dependencies = [
- "diesel",
- "diesel_migrations",
- "dotenvy",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
 ]
 
 [[package]]

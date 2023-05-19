@@ -9,8 +9,21 @@ function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [todos, setTodos] = useState<{ id: number; content: string }[]>([]);
 
-  const getTodos = () => {
-    invoke("api", { action: "get" }).then((res) => console.log(res));
+  const getTodos = async () => {
+    const todos = await invoke<{ id: number; content: string }[]>("api", {
+      action: "get",
+    });
+    setTodos(todos);
+  };
+
+  const addTodo = async (content: string) => {
+    if (content.length) {
+      await invoke("api", {
+        action: "add",
+        content,
+      });
+      await getTodos();
+    }
   };
 
   useEffect(() => {
@@ -24,19 +37,23 @@ function App() {
         onSubmit={async (e) => {
           e.preventDefault();
           if (inputRef.current) {
-            await invoke("api", {
-              action: "add",
-              content: inputRef.current.value,
-            }).then((res) => {
-              console.log(res);
-            });
+            await addTodo(inputRef.current.value);
           }
         }}
       >
         <input placeholder="add todo" ref={inputRef} />
         <button type="submit">SUBMIT</button>
       </form>
-      <button onClick={getTodos}>REFETCH</button>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            <span>
+              {todo.content}
+            </span>
+            <button>DELETE</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

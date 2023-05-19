@@ -17,18 +17,17 @@ fn api(action: &str, content: Option<&str>) -> Option<Vec<Todo>> {
         }
         "add" => {
             if let Some(content) = content {
-                match add_todo(connection, content) {
+                return match add_todo(connection, content) {
                     Ok(_) => {
-                        return None;
+                        None
                     }
                     Err(_) => {
                         println!("Failed to add todo");
-                        return None;
+                        None
                     }
-                }
-            } else {
-                None
-            }
+                };
+            } 
+            return None;
         }
         _ => None,
     }

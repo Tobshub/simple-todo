@@ -70,6 +70,8 @@ fn add_todo(conn: &mut SqliteConnection, content: &str) -> Result<(), Box<dyn Er
         .values(&new_todo)
         .execute(conn)?;
 
+    println!("Added new to-do");
+
     return Ok(());
 }
 
@@ -77,6 +79,8 @@ fn delete_todo(conn: &mut SqliteConnection, todo_id: i32) -> Result<(), Box<dyn 
     use self::schema::todos::dsl::*;
 
     diesel::delete(todos.filter(id.eq(todo_id))).execute(conn)?;
+
+    println!("Deleted to-do with id {}", todo_id);
 
     return Ok(());
 }

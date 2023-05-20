@@ -43,11 +43,17 @@ function App() {
         onSubmit={async (e) => {
           e.preventDefault();
           if (inputRef.current) {
-            await addTodo(inputRef.current.value);
+            const content = inputRef.current.value;
+            setTodos((state) => [
+              ...state,
+              { id: (state.at(-1)?.id ?? 0) + 1, content },
+            ]);
+            await addTodo(content);
+            inputRef.current.value = "";
           }
         }}
       >
-        <input placeholder="add todo" ref={inputRef} />
+        <input placeholder="New To-do" ref={inputRef} />
         <button type="submit">Add To-do</button>
       </form>
       <ul className="todo-list">

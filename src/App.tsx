@@ -36,9 +36,10 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h2>Hello World</h2>
+    <main>
+      <h1>Simple To-do</h1>
       <form
+        className="add-form"
         onSubmit={async (e) => {
           e.preventDefault();
           if (inputRef.current) {
@@ -47,17 +48,19 @@ function App() {
         }}
       >
         <input placeholder="add todo" ref={inputRef} />
-        <button type="submit">SUBMIT</button>
+        <button type="submit">Add To-do</button>
       </form>
-      <ul>
+      <ul className="todo-list">
         {todos.map((todo) => (
           <li key={todo.id}>
             <span>{todo.content}</span>
-            <button onClick={() => deleteTodo(todo.id)}>DELETE</button>
+            <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>
+              DELETE
+            </button>
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 }
 

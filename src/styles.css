@@ -13,3 +13,77 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  color: white;
+  border-radius: 5px;
+  border: 0;
+  padding: 0.4rem 0.5rem;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.add-form > input {
+  width: 500px;
+  font-size: 1rem;
+}
+
+.add-form > button[type="submit"] {
+  background-color: hsl(121, 48%, 36%);
+  color: white;
+  font-weight: bold;
+}
+
+.add-form > button[type="submit"]:hover {
+  background-color: hsl(121, 48%, 36%);
+  scale: 1.05;
+  cursor: pointer;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-list > li:nth-child(odd) {
+  background-color: #fff;
+}
+
+.todo-list > li {
+  border-radius: 5px;
+  padding: 0.2rem 0.4rem;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  width: 500px;
+}
+
+.delete-btn {
+  background-color: hsl(10, 95%, 65%);
+}
+
+.delete-btn:hover {
+  scale: 1.05;
+  background-color: hsl(10, 95%, 55%);
+  cursor: pointer;
+  font-weight: bold;
+}
